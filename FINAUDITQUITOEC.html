@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FINAUDITQUITOEC</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: url(https://crehana-blog.s3.amazonaws.com/media/filer_public/c4/16/c41620e3-dc2f-44d4-a809-6fbde674ce3a/fondos-pantalla-pc-3d-4.png) no-repeat center center fixed; 
+            background-size: cover;
+            color: #333;
+            line-height: 1.6;
+        }
+        .navbar {
+            background-color: #c9aa6b;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .navbar img {
+            height: 100px;
+        }
+        .navbar h1 {
+            color: white;
+            margin: 0;
+            font-size: 1.8rem;
+        }
+        .content {
+            padding: 20px;
+            max-width: 1200px;
+            margin: auto;
+        }
+        .slider img {
+            width: 100%;
+            display: block;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+        .section {
+            padding: 20px;
+            background-color: white;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        .section h2 {
+            color: #155f68;
+            border-bottom: 2px solid #0d97a2;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+        .introduccion p,
+        .calificacion p,
+        .ubicacion p {
+            margin-bottom: 10px;
+        }
+        .servicios-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+        }
+        .servicios-text {
+            width: 60%;
+        }
+        .servicios-text ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        .servicios-text li {
+            margin-bottom: 10px;
+        }
+        .servicios-text ul ul {
+            list-style-type: disc;
+            margin-left: 20px;
+        }
+        .servicios-img {
+            width: 35%;
+            padding-left: 20px;
+        }
+        .servicios-img img {
+            max-width: 100%;
+            border-radius: 10px;
+        }
+        .slideshow-container {
+            max-width: 1000px;
+            position: relative;
+            margin: auto;
+        }
+        .mySlides {
+            display: none;
+        }
+        .prev, .next {
+            cursor: pointer;
+            position: absolute;
+            top: 50%;
+            width: auto;
+            margin-top: -22px;
+            padding: 16px;
+            color: white;
+            font-weight: bold;
+            font-size: 18px;
+            transition: 0.6s ease;
+            border-radius: 0 3px 3px 0;
+            user-select: none;
+        }
+        .next {
+            right: 0;
+            border-radius: 3px 0 0 3px;
+        }
+        .prev:hover, .next:hover {
+            background-color: rgba(0, 0, 0, 0.8);
+        }
+        .text {
+            color: #f2f2f2;
+            font-size: 15px;
+            padding: 8px 12px;
+            position: absolute;
+            bottom: 8px;
+            width: 100%;
+            text-align: center;
+        }
+        .numbertext {
+            color: #f2f2f2;
+            font-size: 12px;
+            padding: 8px 12px;
+            position: absolute;
+            top: 0;
+        }
+        .dot {
+            cursor: pointer;
+            height: 15px;
+            width: 15px;
+            margin: 0 2px;
+            background-color: #bbb;
+            border-radius: 50%;
+            display: inline-block;
+            transition: background-color 0.6s ease;
+        }
+        .active, .dot:hover {
+            background-color: #717171;
+        }
+        .fade {
+            animation-name: fade;
+            animation-duration: 1.5s;
+        }
+        @keyframes fade {
+            from {opacity: .4} 
+            to {opacity: 1}
+        }
+        .flip-card {
+            background-color: transparent;
+            width: 300px;
+            height: 300px;
+            margin: auto;
+            border: 1px solid #f1f1f1;
+            perspective: 1000px;
+        }
+        .flip-card-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            transition: transform 0.8s;
+            transform-style: preserve-3d;
+        }
+        .flip-card:hover .flip-card-inner {
+            transform: rotateY(180deg);
+        }
+        .flip-card-front, .flip-card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+        }
+        .flip-card-front {
+            background-color: #bbb;
+            color: black;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 10px;
+        }
+        .flip-card-back {
+            background-color: dodgerblue;
+            color: white;
+            transform: rotateY(180deg);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            border-radius: 10px;
+        }
+        .flip-card-back a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        .footer {
+            background-color: #000; /* Color negro */
+            color: #fff; /* Color blanco para el texto */
+            text-align: center; /* Centrar el texto */
+            padding: 2px 0; /* Espaciado superior e inferior *
+            position: fixed; /* Fijar la franja al fondo de la página */
+            bottom: 0; /* Asegurar que está al fondo */
+            width: 100%; /* Ancho completo de la página */
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <img src="C:\Users\Usuario\Downloads\FINAUDIT-removebg-preview (1).png" alt="Logo">
+        <h1>FINAUDIT S.A</h1>
+       
+    </div>
+    <div class="content">
+        <div class="slideshow-container">
+            <div class="mySlides fade">
+                <div class="numbertext">1 / 3</div>
+                <img src="https://media.istockphoto.com/id/1496036266/es/foto/concepto-de-auditor%C3%ADa-de-documentos-de-oficina-proceso-de-revisi%C3%B3n-del-plan-y-evaluaci%C3%B3n-de-la.jpg?s=612x612&w=0&k=20&c=NjCH_p7AybcLduJEYoOp9BAfsEkjpfbnoFH9a5YbtNw=" style="width:100%">
+                <div class="text">El punto de partida de todo logro es el deseo.</div>
+            </div>
+            <div class="mySlides fade">
+                <div class="numbertext">2 / 3</div>
+                <img src="https://media.istockphoto.com/id/1168185036/es/foto/concepto-de-auditor%C3%ADa-financiera.jpg?s=612x612&w=0&k=20&c=kxXZ994On_bDQMgs3GXTm7_EETrFfYGk2_wvFpfmGgc=" style="width:100%">
+                <div class="text">Cada acción es una oportunidad para mejorar.</div>
+            </div>
+            <div class="mySlides fade">
+                <div class="numbertext">3 / 3</div>
+                <img src="https://media.istockphoto.com/id/866973208/es/foto/concepto-de-la-rueda-de-metal.jpg?s=612x612&w=0&k=20&c=mC3-ntou_dgjZXXENNk9nFr8PgeRcBMu4XNm3HOfa6s=" style="width:100%">
+                <div class="text">Inspiración</div>
+            </div>
+            <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+            <a class="next" onclick="plusSlides(1)">&#10095;</a>
+        </div>
+        <br>
+        <div style="text-align:center">
+            <span class="dot" onclick="currentSlide(1)"></span>
+            <span class="dot" onclick="currentSlide(2)"></span>
+            <span class="dot" onclick="currentSlide(3)"></span>
+        </div>
+        <div class="section introduccion">
+            <h2>Introducción</h2>
+            <p>Somos una firma especializada en asesoría financiera a la vanguardia de las situaciones
+            que viven las Compañías y nos consolidamos como aliados en el
+            cumplimiento de los objetivos empresariales planteados.</p>
+            <p>Nuestro principal objetivo es entregar un servicio de alto nivel, a través del claro
+            entendimiento de las necesidades de nuestros clientes, un asesoramiento integral
+            considerando las implicaciones tributarias, legales, financieras y estratégicas; con un
+            enfoque de revisión exhaustivo que va más allá del control tradicional.</p>
+        </div>
+        <div class="section servicios">
+            <h2>Nuestros Servicios</h2>
+            <div class="servicios-content">
+                <div class="servicios-text">
+                    <ul>
+                        <li><strong>Auditoría y Aseguramiento</strong>
+                            <ul>
+                                <li>Auditoría externa</li>
+                                <li>Auditoría interna</li>
+                                <li>Procedimientos acordados</li>
+                                <li>Implementación NIIF</li>
+                            </ul>
+                        </li>
+                        <li><strong>Revisión Fiscal</strong>
+                            <ul>
+                                <li>Cumplimiento obligaciones tributarias</li>
+                                <li>Planeación de impuestos</li>
+                            </ul>
+                        </li>
+                        <li><strong>Consultoría</strong>
+                            <ul>
+                                <li>Controlling Financiero</li>
+                                <li>Valoración de proyectos de inversión</li>
+                                <li>Sistemas de inteligencia de negocios</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+                <div class="servicios-img">
+                    <img src="https://www.consultoriainnovadora.es/wp-content/uploads/2020/09/Auditoria-1024x660.jpg" alt="Servicios">
+                </div>
+            </div>
+        </div>
+        <div class="section calificacion">
+            <h2>Calificación de Auditores</h2>
+            <p>★ SUPERINTENDENCIA DE COMPAÑÍAS, VALORES Y SEGUROS ★</p>
+            <p>★ SUPERINTENDENCIA DE BANCOS ★</p>
+            <p>★ SUPERINTENDENCIA DE ECONOMIA POPULAR Y SOLIDARIA ★</p>
+        </div>
+        <div class="section contacto">
+            <h2>Contacto</h2>
+            <div class="flip-card">
+                <div class="flip-card-inner">
+                    <div class="flip-card-front">
+                        <img src="https://media.licdn.com/dms/image/C4D03AQFJ6AxlKvbjaw/profile-displayphoto-shrink_200_200/0/1609887201415?e=2147483647&v=beta&t=SpZclHUKzDLRrpKosptSzElzcwTRQdoekjmKKeLKTnw" alt="Avatar" style="width:300px;height:300px;border-radius: 10px;">
+                    </div>
+                    <div class="flip-card-back">
+                        <h1>Stalin Moreno</h1>
+                        <p>Representante Legal</p>
+                        <p>Telf.: (593-2) 5127439</p>
+                        <p>Email: <a href="mailto:info@finauditecuador.com">info@finauditecuador.com</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="section ubicacion">
+            <h2>Ubicación</h2>
+            <p>Reina Victoria N26-49 y Santa María</p>
+            <p>Edificio Alexandria I - Piso 2 - Oficina 205</p>
+        </div>
+    </div>
+    <footer class="footer">
+        <p>&copy; 2024 Todos los derechos reservados.</p>
+    </footer>
+    <script>
+        let slideIndex = 1;
+        showSlides(slideIndex);
+
+        function plusSlides(n) {
+            showSlides(slideIndex += n);
+        }
+
+        function currentSlide(n) {
+            showSlides(slideIndex = n);
+        }
+
+        function showSlides(n) {
+            let i;
+            let slides = document.getElementsByClassName("mySlides");
+            let dots = document.getElementsByClassName("dot");
+            if (n > slides.length) { slideIndex = 1 }
+            if (n < 1) { slideIndex = slides.length }
+            for (i = 0; i < slides.length; i++) {
+                slides[i].style.display = "none";
+            }
+            for (i = 0; i < dots.length; i++) {
+                dots[i].className = dots[i].className.replace(" active", "");
+            }
+            slides[slideIndex - 1].style.display = "block";
+            dots[slideIndex - 1].className += " active";
+        }
+    </script>
+</body>
+</html>
+
+
+
+
+
